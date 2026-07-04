@@ -2,6 +2,10 @@
 
 A full-stack web platform built using Node.js, Express.js, MongoDB, and EJS to list, browse, and manage rental properties with secure authentication, image uploads, and reviews. Built using the MVC architecture for clean scalability and maintainability.
 
+**Live Demo**: [wanderlust-9ma5.onrender.com](https://wanderlust-9ma5.onrender.com)
+
+> Note: hosted on Render's free tier — the app "sleeps" after periods of inactivity, so the first load may take 30-50 seconds to spin back up.
+
 ---
 
 ## Features
@@ -117,6 +121,12 @@ Visit **http://localhost:8080**
 - Pagination for listings
 
 ---
+
+## About this project
+
+This project was originally built as a learning exercise, then independently set up, debugged, and deployed by me end-to-end — including resolving environment configuration issues, fixing a broken entry point, wiring up Cloudinary from scratch, and diagnosing a production MongoDB Atlas networking/TLS issue during deployment.
+
+I'm actively extending it with additional features (see Future Improvements above) as a way to go deeper into the codebase.
 
 ## License
 
