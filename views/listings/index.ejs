@@ -1,0 +1,53 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+<body>
+  <div class="container mt-4">
+    <h2 class="mb-4 text-center">All Listings</h2>
+
+    <!-- Filter controls -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <label for="countryFilter" class="form-label">Filter by Country</label>
+        <select id="countryFilter" class="form-select">
+          <option value="">All Countries</option>
+          <% 
+            const uniqueCountries = [...new Set(alllisting.map(list => list.country))];
+            uniqueCountries.forEach(country => { 
+          %>
+            <option value="<%= country %>"><%= country %></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label for="priceRange" class="form-label">Max Price (₹): <span id="priceValue">5000</span></label>
+        <input type="range" id="priceRange" min="0" max="10000" value="5000" class="form-range" />
+      </div>
+
+      <div class="col-md-4 d-flex align-items-end">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="taxSwitch" />
+          <label for="taxSwitch" class="form-check-label">Include 18% GST</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Listings grid -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <% for (let listing of alllisting) { %>
+        <div class="col listing-card" data-price="<%= listing.price %>" data-country="<%= listing.country %>">
+          <div class="card h-100 shadow-sm">
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing image" style="height: 200px; object-fit: cover;" />
+            <div class="card-body">
+              <h5 class="card-title"><%= listing.title %></h5>
+              <p class="card-text price-text" data-base="<%= listing.price %>">₹ <%= listing.price %> / night</p>
+              <a href="/listings/<%= listing._id %>" class="btn btn-primary">More Info</a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- Script for filtering -->
+  <script src="/js/filterListings.js"></script>
+</body>

@@ -1,0 +1,56 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Log In</h2>
+
+  <form action="/login" method="POST" class="col-md-6 offset-md-3 needs-validation" novalidate>
+    <!-- Username -->
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        name="username"
+        placeholder="Enter your username"
+        required
+      />
+      <div class="invalid-feedback">Please enter your username.</div>
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        required
+      />
+      <div class="invalid-feedback">Please enter your password.</div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary w-100">Log In</button>
+  </form>
+</div>
+
+<script>
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>
+
+

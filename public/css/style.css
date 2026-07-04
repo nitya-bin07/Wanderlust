@@ -1,0 +1,177 @@
+.navbar {
+    height: 5rem;
+    background-color: white;
+}
+
+.fa-compass {
+    color: #fe424d;
+    font-size: 2rem; /* Fixed spacing */
+}
+
+.nav-link {
+    color: #222222 !important;
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+    margin: 0 0.5rem;
+}
+
+.f-info-links {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.f-info-socials i {
+    vertical-align: middle;
+    font-size: 1.4rem; /* Fixed spacing */
+    margin: 0 1rem;
+}
+
+.f-info {
+    text-align: center;
+    display: flex;
+    height: 8rem;
+    background-color: aliceblue;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; /* Fixed from space-even (invalid) */
+    padding: 1rem 0;
+    gap: 1rem;
+}
+/* cards */
+.card{
+    margin-bottom: 2rem;
+    border:none !important;
+}
+.card-img-top{
+border-radius: 1rem !important;
+width:100% !important;
+object-fit:cover !important;
+
+}
+.card:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+/* styling new.ejs */
+/* New Listing Form Styling */
+.new-listing-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.new-listing-form label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.new-listing-form input,
+.new-listing-form textarea {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+    font-size: 1rem;
+}
+
+.new-listing-form button {
+    background-color: #fe424d;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.new-listing-form button:hover {
+    background-color: #dc3545;
+}
+/* Listing Details Page Styling */
+.listing-detail-card {
+    max-width: 800px;
+    margin: 2rem auto;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.listing-detail-card img {
+    width: 100%;
+    height: 22rem;
+    object-fit: cover;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.listing-detail-card .card-body {
+    padding: 1.5rem;
+}
+
+.listing-detail-card .card-title {
+    font-size: 2rem;
+    color: #343a40;
+    margin-bottom: 1rem;
+}
+
+.listing-detail-card .card-text {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.btn-outline-primary,
+.btn-outline-danger {
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 0.4rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+.listing-detail-img {
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+
+/* showing reviews  */
+/* === Reviews Section === */
+.review-card {
+  border-left: 5px solid #fe424d;
+  background-color: #f9f9f9;
+  transition: transform 0.2s ease;
+}
+
+.review-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.review-card .card-body {
+  padding: 1rem;
+}
+.text-warning {
+  color: #ffc107 !important;
+}
+

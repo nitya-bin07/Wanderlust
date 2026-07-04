@@ -1,0 +1,114 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <!-- Listing Card -->
+      <div class="card listing-detail-card shadow-sm">
+        <img src="<%= listing.image.url %>" class="card-img-top listing-detail-img" alt="Image of <%= listing.title %>" referrerpolicy="no-referrer">
+
+        <div class="card-body">
+          <h2 class="card-title mb-3"><%= listing.title %></h2>
+          <p class="card-text"><strong>Description:</strong> <%= listing.description %></p>
+          <p class="card-text"><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
+          <p class="card-text"><strong>Price:</strong> ₹<%= listing.price %>/night</p>
+
+          <% if (listing.owner && listing.owner.username) { %>
+            <p class="card-text"><strong>Posted by:</strong> <%= listing.owner.username %></p>
+          <% } %>
+
+          <% if (currentUser && listing.owner && currentUser._id.toString() === listing.owner._id.toString()) { %>
+            <div class="mt-4 d-flex gap-3">
+              <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-primary">Edit</a>
+              <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+                <button type="submit" class="btn btn-outline-danger">Delete</button>
+              </form>
+            </div>
+          <% } %>
+        </div>
+      </div>
+
+      <!-- Reviews Section -->
+      <% if (listing.reviews.length > 0) { %>
+        <div class="container mt-4">
+          <h5 class="mb-3">Reviews</h5>
+          <div class="row row-cols-1 row-cols-md-2 g-3">
+            <% listing.reviews.forEach(review => { %>
+              <div class="col">
+                <div class="card h-100 review-card shadow-sm">
+                  <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">
+                      Rating:
+                      <% for (let i = 1; i <= 5; i++) { %>
+                        <span class="<%= i <= review.rating ? 'text-warning' : 'text-muted' %>">★</span>
+                      <% } %>
+                    </h6>
+
+                    <p class="card-text mb-1"><%= review.comment %></p>
+                    <p class="card-text"><strong>By:</strong> <%= review.author?.username || "Anonymous" %></p>
+
+                    <% if (currentUser && review.author && currentUser._id.toString() === review.author._id.toString()) { %>
+                      <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                        <button type="submit" class="btn btn-sm btn-outline-danger mt-2">Delete Review</button>
+                      </form>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      <% } else { %>
+        <p class="mt-4">No reviews yet.</p>
+      <% } %>
+
+      <!-- Review Form -->
+      <% if (currentUser) { %>
+        <div class="card mt-4">
+          <div class="card-body">
+            <h4 class="card-title mb-3">Leave a Review</h4>
+            <form method="POST" action="/listings/<%= listing._id %>/reviews">
+              <div class="mb-3">
+                <label for="comment" class="form-label">Comment</label>
+                <textarea class="form-control" id="comment" name="review[comment]" rows="3" required></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="rating" class="form-label">Rating:
+                  <span id="ratingValue">3</span>
+                  <span id="ratingStars" class="text-warning">★★★☆☆</span>
+                </label>
+                <input type="range" class="form-range" id="rating" name="review[rating]" min="1" max="5" value="3" step="1" oninput="updateRatingDisplay(this.value)" required>
+              </div>
+
+              <button type="submit" class="btn btn-success">Submit Review</button>
+            </form>
+          </div>
+        </div>
+      <% } else { %>
+        <p class="mt-4 text-center">You must <a href="/login">log in</a> to leave a review.</p>
+      <% } %>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateRatingDisplay(value) {
+    document.getElementById("ratingValue").innerText = value;
+    let stars = "";
+    for (let i = 1; i <= 5; i++) {
+      stars += i <= value ? "★" : "☆";
+    }
+    document.getElementById("ratingStars").innerText = stars;
+  }
+
+  // Initialize stars on load
+  window.onload = function () {
+    const slider = document.getElementById("rating");
+    if (slider) {
+      updateRatingDisplay(slider.value);
+    }
+  };
+</script>
