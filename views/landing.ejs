@@ -1,0 +1,80 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Find your next stay</p>
+    <h1 class="hero-title">Stays worth<br />wandering for.</h1>
+    <p class="hero-subtitle">
+      Handpicked homes, cabins, and hideaways — from beachfront cottages to
+      mountain retreats. Browse the collection and find the place that fits
+      your next trip.
+    </p>
+    <div class="hero-actions">
+      <a href="/listings" class="btn-hero-primary">Explore Listings</a>
+      <a href="/listing/new" class="btn-hero-secondary">List Your Property</a>
+    </div>
+  </div>
+</section>
+
+<section class="landing-section">
+  <div class="section-heading">
+    <p class="section-eyebrow">Why Wanderlust</p>
+    <h2 class="section-title">Everything you need to plan a trip that fits</h2>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fa-solid fa-compass"></i></div>
+      <h3>Curated Stays</h3>
+      <p>Every listing is browsable by location, price, and category — no endless scrolling through places you'd never book.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fa-solid fa-shield-heart"></i></div>
+      <h3>Owner Accountability</h3>
+      <p>Listings are tied to verified accounts, so every property has a real owner behind it, not an anonymous post.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fa-solid fa-star"></i></div>
+      <h3>Honest Reviews</h3>
+      <p>Real feedback from guests who've actually stayed, so you know what you're booking before you arrive.</p>
+    </div>
+  </div>
+</section>
+
+<% if (featuredListings && featuredListings.length > 0) { %>
+<section class="landing-section featured-section">
+  <div class="section-heading">
+    <p class="section-eyebrow">Fresh on Wanderlust</p>
+    <h2 class="section-title">A few places to start</h2>
+  </div>
+
+  <div class="featured-grid">
+    <% featuredListings.forEach(listing => { %>
+      <a href="/listings/<%= listing._id %>" class="featured-card">
+        <div class="featured-img" style="background-image: url('<%= listing.image.url %>');"></div>
+        <div class="featured-body">
+          <h4><%= listing.title %></h4>
+          <p><%= listing.location %></p>
+          <span class="featured-price">&#8377;<%= listing.price %> / night</span>
+        </div>
+      </a>
+    <% }) %>
+  </div>
+
+  <div class="featured-cta">
+    <a href="/listings" class="btn-hero-secondary">See all listings &rarr;</a>
+  </div>
+</section>
+<% } %>
+
+<section class="landing-cta">
+  <h2>Ready to find your place?</h2>
+  <p>Join Wanderlust and start browsing stays, or list your own property in minutes.</p>
+  <div class="hero-actions">
+    <a href="/signup" class="btn-hero-primary">Get Started</a>
+  </div>
+</section>

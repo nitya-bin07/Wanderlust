@@ -42,7 +42,7 @@ async function isOwner(req, res, next) {
 router.get("/", listingController.showAllListings);
 
 // Show all listings
-router.get("/listings", listingController.showAllListings);
+router.get("/", listingController.renderLanding);
 
 // New listing form
 router.get("/listing/new", isLoggedIn, listingController.renderNewForm);

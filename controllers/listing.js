@@ -1,5 +1,11 @@
 const Listing = require("../models/listing");
 
+// Render the landing page (public homepage)
+module.exports.renderLanding = async (req, res) => {
+  const featuredListings = await Listing.find({}).limit(3);
+  res.render("landing.ejs", { featuredListings });
+};
+
 // Show all listings
 module.exports.showAllListings = async (req, res) => {
   const alllisting = await Listing.find({});
