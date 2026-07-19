@@ -38,11 +38,9 @@ async function isOwner(req, res, next) {
 // ============================
 //          ROUTES
 // ============================
+router.get("/", listingController.renderLanding);
 // Show all listings on home page
 router.get("/", listingController.showAllListings);
-
-// Show all listings
-router.get("/", listingController.renderLanding);
 
 // New listing form
 router.get("/listing/new", isLoggedIn, listingController.renderNewForm);
